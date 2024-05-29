@@ -1,0 +1,23 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: support
+rules:
+  - apiGroups: [""]
+    resources: ["pods", "services", "deploy", "secrets"]
+    verbs: ["list", "get", "watch"]
+
+---
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: support
+subjects:
+  - kind: User
+    name: Support
+    apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: support
+  apiGroup: rbac.authorization.k8s.io
